@@ -22,10 +22,10 @@ end
 get "game/new" do
   @game = Game.create
   @user_game = UserGame.create(:game_id => @game.id, :user_id => current_user.id)
-  erb :game
+  redirect "/game/#{@game.id}"
 end
 
-get "game/:game_id" do
+get "game/join_game/:game_id" do
   @game = Game.find(params[:game_id])
   @user_game = UserGame.create(:game_id => @game.id, :user_id => current_user.id)
   erb :game
