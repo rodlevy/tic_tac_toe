@@ -1,3 +1,11 @@
 Make new game
 
 <a href='/game/new'>Make New Game</a>
+
+<ul>
+<% Game.all.each do |game| %>
+  <% if game.user_games.length == 1 %>
+   <li><a href="/game/join_game/<%=game.id%>">Join Game!</a></li>
+  <% end %>
+  <% end %>
+</ul>

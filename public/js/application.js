@@ -15,7 +15,7 @@ $(document).ready(function() {
           var data = "{user:"+your_label+",response:"+square+"}";
           $.post('/game/update/'+$('#parent-list').data('game_id'), data, function(response) {
             if (response['data'] === true) {
-              $('.container').append('<h1> Player ' + (your_label +1 )+ ' has won! </h1>');
+              $('.container').append('<h1> Player ' + your_label+ ' has won! </h1>');
             }
           });
         }
