@@ -9,14 +9,14 @@ end
 
 
 
-get 'game/gamestate' do
+# get 'game/gamestate' do
   
-  your_turn?
-  current_user.id == Game.where(who has less squares picked)
+#   your_turn?
+#   current_user.id == Game.where(who has less squares picked)
 
-  content_type :json
-  {:current_user, :whose_turn, :gamestate}.to_json
-end
+#   content_type :json
+#   {:current_user, :whose_turn, :gamestate}.to_json
+# end
 
 
 get "game/new" do

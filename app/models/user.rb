@@ -15,14 +15,14 @@ class User < ActiveRecord::Base
   end
 
   def self.create(params={})
-    @user = User.new(:email => params[:email], :name => params[:name])
+    @user = User.new(:username => params[:username])
     @user.password = params[:password]
     @user.save!
     @user
   end
 
   def self.authenticate(params)
-    user = User.find_by_name(params[:name])
+    user = User.find_by_username(params[:username])
     (user && user.password == params[:password]) ? user : nil
   end
 end

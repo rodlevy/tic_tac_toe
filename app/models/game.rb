@@ -2,13 +2,16 @@ class Game < ActiveRecord::Base
   has_many :user_games
   has_many :users, :through => :user_games
 
-  def self.create!
-      @board = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
+  def self.create(params = {})
+    @board = "000000000"
+    @game = Game.new(:board => @board)
+    @game.save
+    @game
   end
 
 
-  def self.update_board!(player_position, player_id)
-    @board[player_position] = player_id
+  def self.update_board!(game_id, player_position, player_id)
+    self.find(game_id)[player_position] = player_id
   end
 
   def self.winner?(player_position, player_id)

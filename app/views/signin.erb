@@ -1,0 +1,19 @@
+<p> Login </p>
+
+<% if @errors %>
+  <ul>
+    <li class="error_messages"><%= @errors %></li>
+  </ul>
+<% end %>
+
+<form action="/user/signin" method="post" id="signin">
+  <div>
+    <label for="user[username]">Username:</label>
+    <input type="text" name="user[username]">
+  </div>
+  <div>
+    <label for="user[password">Password:</label>
+    <input type="password" name="user[password]">
+  </div>
+  <button type="submit">Submit</button>
+</form>
