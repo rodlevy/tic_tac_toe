@@ -4,20 +4,23 @@ end
 
 
 post '/game/update/:game_id' do
+  game = current_user.games.find(params[:game_id])
+  game.set_board_at(params[:square], params[:label])
+  game.save
   content_type :json
-  {:data => false }.to_json
+  {:data => game.winner }.to_json
 end
 
 
 get "/game/new" do
   @game = Game.create
-  @user_game = UserGame.create(:game_id => @game.id, :user_id => current_user.id, :label => 'O')
+  @user_game = UserGame.create(:game_id => @game.id, :user_id => current_user.id, :label => 'X')
   redirect "/game/#{@game.id}"
 end
 
 get "/game/join_game/:game_id" do
   @game = Game.find(params[:game_id])
-  UserGame.create(:game_id => @game.id, :user_id => current_user.id, :label => 'X')
+  UserGame.create(:game_id => @game.id, :user_id => current_user.id, :label => 'O')
   redirect "/game/#{@game.id}"
 end
 

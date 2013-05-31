@@ -12,9 +12,9 @@ $(document).ready(function() {
           $('.container').removeClass('player_2').addClass('player_1');
 
           var square = e.target.id;
-          var data = "{user:"+your_label+",response:"+square+"}";
+          var data = {'label':your_label, 'square': square};
           $.post('/game/update/'+$('#parent-list').data('game_id'), data, function(response) {
-            if (response['data'] === true) {
+            if (response['data'] === your_label) {
               $('.container').append('<h1> Player ' + your_label+ ' has won! </h1>');
             }
           });
@@ -23,6 +23,8 @@ $(document).ready(function() {
     }
   });
 });
+
+ 
 
 
 

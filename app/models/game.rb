@@ -2,43 +2,44 @@ class Game < ActiveRecord::Base
   has_many :user_games
   has_many :users, :through => :user_games
 
-  def self.create(params = {})
-    @board = "000000000"
-    @game = Game.new(:board => @board)
-    @game.save
-    @game
+  before_create :set_defaults
+
+  def set_defaults
+    self.board ||= "123456789"
   end
 
-
-  def self.update_board!(game_id, position, user_id)
-    @game =self.find(game_id)
-    @board = @game.board
-    @board[position] = @game.user_games.label
-
-
-    [player_position] = player_id
+  def set_board_at(position, label)
+    board = self.board.dup
+    board[position.to_i] = label
+    self.board = board
   end
 
-  def self.winner?(player_position, player_id)
-    if @board[0] && @board[1] && @board[2] == player_id
-      return player_id
-    elsif @board[3] && @board[4] && @board[5] == player_id
-      return player_id
-    elsif @board[6] && @board[7] && @board[8] == player_id
-      return player_id
-    elsif @board[0] && @board[3] && @board[6] == player_id
-      return player_id
-    elsif @board[0] && @board[4] && @board[8] == player_id
-      return player_id
-    elsif @board[1] && @board[4] && @board[7] == player_id
-      return player_id
-    elsif @board[2] && @board[5] && @board[8] == player_id
-      return player_id
-    elsif @board[2] && @board[4] && @board[6] == player_id
-      return player_id
+  def winner
+    if winner_at?(0, 1, 2)
+      board[0]
+    elsif winner_at?(3, 4, 5)
+      board[3]
+    elsif winner_at?(6, 7, 8)
+      board[6]
+    elsif winner_at?(0, 3, 6)
+      board[0]
+    elsif winner_at?(0, 4, 8)
+      board[0]
+    elsif winner_at?(1, 4, 7)
+      board[1]
+    elsif winner_at?(2, 5, 8)
+      board[2]
+    elsif winner_at?(2, 4, 6)
+      board[2]
     else
-      return nil
+      nil
     end
+  end
+
+  private 
+
+  def winner_at?(*positions)
+    positions.map { |pos| board[pos] }.uniq.length == 1
   end
 end
 
