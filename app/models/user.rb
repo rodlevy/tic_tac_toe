@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  has_and_belong_to_many :games
+  has_many :user_games
+  has_many :games, :through => :user_games
+
   
   include BCrypt
 
