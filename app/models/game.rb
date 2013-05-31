@@ -10,8 +10,13 @@ class Game < ActiveRecord::Base
   end
 
 
-  def self.update_board!(game_id, player_position, player_id)
-    self.find(game_id)[player_position] = player_id
+  def self.update_board!(game_id, position, user_id)
+    @game =self.find(game_id)
+    @board = @game.board
+    @board[position] = @game.user_games.label
+
+
+    [player_position] = player_id
   end
 
   def self.winner?(player_position, player_id)
