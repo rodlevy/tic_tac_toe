@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_and_belong_to_many :games
+  
   include BCrypt
 
   def password
