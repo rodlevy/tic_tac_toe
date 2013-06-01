@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
   before_create :set_defaults
 
   def set_defaults
-    self.board ||= "123456789"
+    self.board ||= "ABCDEFGHI"
   end
 
   def set_board_at(position, label)
@@ -39,7 +39,7 @@ class Game < ActiveRecord::Base
   def whose_turn
     x = board.count "X"
     o = board.count "O"
-    if x >= o
+    if x > o
       "O"
     else
       "X"

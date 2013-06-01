@@ -24,6 +24,15 @@ get "/game/join_game/:game_id" do
   redirect "/game/#{@game.id}"
 end
 
+get '/game/changed/:game_id' do
+ @game = Game.find(params[:game_id])
+ user_label = UserGame.find_by_game_id_and_user_id(@game.id, current_user.id).label
+ @game.winner == user_label 
+ @game.winner != nil
+ content_type :json
+{:page => (erb :current_game, :layout => false), :data => @game.winner, :your_label => user_label}.to_json
+end
+
 get "/game/:game_id" do
   @game = Game.find(params[:game_id]) 
   erb :current_game
@@ -40,3 +49,4 @@ get '/game/gamestate/:game_id' do
   content_type :json
   {:your_turn => your_turn, :your_label => user_label}.to_json
 end
+
