@@ -14,6 +14,10 @@ class Game < ActiveRecord::Base
     self.board = board
   end
 
+  def tied
+   board =~ /\.+|\*|\s/
+  end
+
   def winner
     if winner_at?(0, 1, 2)
       board[0]

@@ -36,7 +36,12 @@ $(document).ready(function() {
         clearInterval(interval);
         $('.container').unbind('click');
       }
-      $('.game').replaceWith(response.page);
-    });
+      else if (response.tie === null) {
+        $('nav').append('<h1> You Tied! </h1>');
+        clearInterval(interval);
+        $('.container').unbind('click');
+     }
+     $('.game').replaceWith(response.page);
+   });
   }, 2500);
 });

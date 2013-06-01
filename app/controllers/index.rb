@@ -30,7 +30,7 @@ get '/game/changed/:game_id' do
  @game.winner == user_label 
  @game.winner != nil
  content_type :json
-{:page => (erb :current_game, :layout => false), :data => @game.winner, :your_label => user_label}.to_json
+{:tie => @game.tied, :page => (erb :current_game, :layout => false), :data => @game.winner, :your_label => user_label}.to_json
 end
 
 get "/game/:game_id" do
