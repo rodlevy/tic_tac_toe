@@ -1,7 +1,7 @@
 .container {
   border-radius: 20px;
   margin: 20px auto;
-  width: 600px;
+  width: 100%;
   padding: 0px 20px 20px 20px;
 }
 th {
@@ -11,15 +11,11 @@ th {
 ul{
 }
 
-.player_2{
-  background-color:black;
-}
-
-.player_1{
-  background-color:green; 
-}
-
-li {
+.game{
+  width:50%;
+  margin: auto;
+}  
+.player_boxes{
   border-radius: 25px;
   padding-top: 8%;
   text-align: center;

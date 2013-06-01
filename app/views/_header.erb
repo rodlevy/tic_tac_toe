@@ -1,0 +1,17 @@
+  <header>
+    <div class="navbar">
+       <nav class="navbar-inner">
+          <h1 class="brand"><a href="/">Tic Tac Toe</a></h1>
+    <ul class="nav">
+      <% if current_user %>
+        <li class="divider-vertical">You are logged in as:<a href="/user/<%= current_user.id %>"><%= current_user.username %></a></li>
+        <li class="divider-vertical"><a href="/game/new">Create Game</a></li>
+        <li class="divider-vertical"><a href="/user/signout">Sign Out</a></li>
+      <% else %>
+        <li class="divider-vertical"><a href="/user/signin">Sign In</a></li>
+        <li class="divider-vertical"><a href="/user/create">Create Account</a></li>
+      <% end %>
+    </ul>
+  </nav>
+  </div>
+  </header>
