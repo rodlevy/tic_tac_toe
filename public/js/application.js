@@ -8,9 +8,6 @@ $(document).ready(function() {
         if (your_turn === true) {
           var li_number = e.target.id;
           x = $('li#'+li_number).html(your_label);
-          $(x).removeClass('btn-info').addClass('btn-warning');
-          $('.container').removeClass('player_2').addClass('player_1');
-          $(x).addClass('bigred');
 
           var square = e.target.id;
           var data = {'label':your_label, 'square': square};

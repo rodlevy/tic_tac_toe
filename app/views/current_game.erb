@@ -1,14 +1,16 @@
 
 <div class="game">
-<ul data-game_id='<%=@game.id%>' id="parent-list">
-    <li class="player_boxes btn-info" id="0"><%=@game.board[0]%></li>
-    <li class="player_boxes btn-info" id="1"><%=@game.board[1]%></li>
-    <li class="player_boxes btn-info" id="2"><%=@game.board[2]%></li>
-    <li class="player_boxes btn-info" id="3"><%=@game.board[3]%></li>
-    <li class="player_boxes btn-info" id="4"><%=@game.board[4]%></li>
-    <li class="player_boxes btn-info" id="5"><%=@game.board[5]%></li>
-    <li class="player_boxes btn-info" id="6"><%=@game.board[6]%></li>
-    <li class="player_boxes btn-info" id="7"><%=@game.board[7]%></li>
-    <li class="player_boxes btn-info" id="8"><%=@game.board[8]%></li>
-</ul>
+  <ul data-game_id='<%=@game.id%>' id="parent-list">
+    <% counter = 0 %>
+<% @game.board.length.times do %>
+  <% if @game.board[counter] == "X" %>
+  <li class="player_1" id="<%=counter%>"><%=@game.board[counter]%></li>
+  <% elsif @game.board[counter] == "O" %>
+  <li class="player_2" id="<%=counter%>"><%=@game.board[counter]%></li>
+  <% else %>
+  <li class="player_boxes btn-info" id="<%=counter%>"><%=@game.board[counter]%></li>
+  <% end %>
+  <% counter += 1 %>
+<% end %>
+  </ul>
 </div>
