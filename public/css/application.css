@@ -11,6 +11,10 @@ th {
 ul{
 }
 
+.bigred{
+  color:red;
+  font-size:30px;
+}
 .game{
   width:50%;
   margin: auto;

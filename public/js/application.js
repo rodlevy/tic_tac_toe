@@ -10,11 +10,15 @@ $(document).ready(function() {
           x = $('li#'+li_number).html(your_label);
           $(x).removeClass('btn-info').addClass('btn-warning');
           $('.container').removeClass('player_2').addClass('player_1');
+          $(x).addClass('bigred');
 
           var square = e.target.id;
           var data = {'label':your_label, 'square': square};
           $.post('/game/update/'+$('#parent-list').data('game_id'), data, function(response) {
           });
+        }
+        else {
+          $('#parent-list').before('<p> Not your Turn!</p>');
         }
       });
     }
@@ -34,5 +38,5 @@ $(document).ready(function() {
       }
       $('.game').replaceWith(response.page);
     });
-  }, 2000);
+  }, 2500);
 });

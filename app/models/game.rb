@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
   before_create :set_defaults
 
   def set_defaults
-    self.board ||= "ABCDEFGHI"
+    self.board ||= ". . * . ."
   end
 
   def set_board_at(position, label)
