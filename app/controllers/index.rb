@@ -32,11 +32,11 @@ end
 get '/game/gamestate/:game_id' do
   game = Game.find(params[:game_id])
   user_label = UserGame.find_by_game_id_and_user_id(game.id, current_user.id).label
-  # if game.whose_turn == user_label
-  #   your_turn = true
-  # else
-  #   your_turn = false
-  # end
+  if game.whose_turn == user_label
+    your_turn = true
+  else
+    your_turn = false
+  end
   content_type :json
-  {:your_turn => true, :your_label => user_label}.to_json
+  {:your_turn => your_turn, :your_label => user_label}.to_json
 end

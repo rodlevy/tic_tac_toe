@@ -36,10 +36,21 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def whose_turn
+    x = board.count "X"
+    o = board.count "O"
+    if x >= o
+      "O"
+    else
+      "X"
+    end
+  end
+
   private 
 
   def winner_at?(*positions)
     positions.map { |pos| board[pos] }.uniq.length == 1
   end
+
 end
 
